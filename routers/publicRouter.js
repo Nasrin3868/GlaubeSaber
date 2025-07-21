@@ -28,7 +28,7 @@ router.get('/features',(req,res)=>{
     res.render('features',{ currentPath: req.path })
 })
 router.get('/login',(req,res)=>{
-    res.render('login')
+    res.render('login',{ currentPath: req.path })
 })
 
 module.exports = router;
