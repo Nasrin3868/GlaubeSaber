@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glaube Logistics | Saudi Import Specialists</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+    </style>
+     <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            700: '#468ba9',  // deeper shade
+                            600: '#549cbc',  // original main
+                            500: '#68a8c3',  // slightly lighter
+                            400: '#7bb4ca',  // even lighter
+                            300: '#89B2C5',  // your existing lighter
+                            200: '#a6c8d8',  // soft pastel
+                            100: '#cde1eb',  // very light background
+                            50:  '#f2f8fa'   //very very light bg
+                        } ,
+                        secondary: '#2c5282',
+                        accent: '#549cbc',
+                        light: '#f7fafc',
+                        dark: '#2d3748',
+                        lightbg:'#89B2C5'
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-700">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 py-2 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/" class="flex items-center">
+                    <img src="/images/glaube-logistics-company-logo.png" 
+                             alt="Audit process" >
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/' ? 'active-nav-item' : '' %>">Home</a>
+                    <a href="/about-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/about-us' ? 'active-nav-item' : '' %>">About-us</a>
+                    <a href="/service" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/service' ? 'active-nav-item' : '' %>">Services</a>
+                    <a href="/features" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/features' ? 'active-nav-item' : '' %>">Features</a>
+                    <a href="/pricing" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
+                    <a href="/contact-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
+                    <a href="/login" class="px-5 py-2 bg-[#549cbc] text-white rounded-full font-medium hover:bg-primary-100 transition">Login</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white py-4 px-6 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="/" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/' ? 'active-nav-item' : '' %>">Home</a>
+                <a href="/about-us" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/about-us' ? 'active-nav-item' : '' %>">About</a>
+                <a href="/service" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/service' ? 'active-nav-item' : '' %>">Services</a>
+                <a href="/features" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/features' ? 'active-nav-item' : '' %>">Features</a>
+                <a href="/pricing" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
+                <a href="/contact-us" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
+                <a href="/login" class="px-5 py-2 bg-primary-600 text-white rounded-full font-medium text-center hover:bg-primary-100 transition">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+<style>
+  .active-nav-item {
+    position: relative;
+    color: #549cbc !important;
+  }
+  
+  .active-nav-item:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #549cbc;
+    animation: underline 0.3s ease;
+  }
+  
+  /* Active state for mobile */
+  #mobile-menu .active-nav-item {
+    border-left: 3px solid #549cbc;
+    padding-left: 12px;
+    color: #549cbc !important;
+  }
+  
+  @keyframes underline {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+</style>
