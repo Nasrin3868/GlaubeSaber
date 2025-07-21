@@ -4,7 +4,7 @@ const contactus= async(req,res)=>{
     try{
         const user=req.body
         console.log('user details:',user);
-        const send_mail=await generateMail(user.email)
+        // const send_mail=await generateMail(user.email)
         res.redirect('/thankyou')
     }catch(err){
         console.log("error:",err);

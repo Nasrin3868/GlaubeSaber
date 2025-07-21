@@ -65,13 +65,18 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/' ? 'active-nav-item' : '' %>">Home</a>
-                    <a href="/about-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/about-us' ? 'active-nav-item' : '' %>">About-us</a>
-                    <a href="/service" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/service' ? 'active-nav-item' : '' %>">Services</a>
-                    <a href="/features" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/features' ? 'active-nav-item' : '' %>">Features</a>
-                    <a href="/pricing" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
-                    <a href="/contact-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= currentPath === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
-                    <a href="/login" class="px-5 py-1 bg-white text-primary-600 border-2 border-primary-600 rounded-full font-medium  transition <%= currentPath === '/login' ? 'active-nav-item' : '' %>">Login</a>
+                    <% 
+    // Safely handle undefined currentPath
+    const path = typeof currentPath !== 'undefined' ? currentPath : '';
+    const activeClass = 'active-nav-item';
+    %>
+                    <a href="/" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/' ? 'active-nav-item' : '' %>">Home</a>
+                    <a href="/about-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/about-us' ? 'active-nav-item' : '' %>">About-us</a>
+                    <a href="/service" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/service' ? 'active-nav-item' : '' %>">Services</a>
+                    <a href="/features" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/features' ? 'active-nav-item' : '' %>">Features</a>
+                    <a href="/pricing" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
+                    <a href="/contact-us" class="text-gray-700 hover:text-primary-600 font-medium transition <%= path === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
+                    <a href="/login" class="px-5 py-1 bg-white text-primary-600 border-2 border-primary-600 rounded-full font-medium  transition <%= path === '/login' ? 'active-nav-item' : '' %>">Login</a>
                 </div>
                 
                 <!-- Mobile menu button -->
@@ -83,16 +88,16 @@
             </div>
         </div>
         
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu -->    
         <div id="mobile-menu" class="hidden lg:hidden bg-white py-4 px-6 shadow-lg">
             <div class="flex flex-col space-y-4">
-                <a href="/" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/' ? 'active-nav-item' : '' %>">Home</a>
-                <a href="/about-us" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/about-us' ? 'active-nav-item' : '' %>">About</a>
-                <a href="/service" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/service' ? 'active-nav-item' : '' %>">Services</a>
-                <a href="/features" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/features' ? 'active-nav-item' : '' %>">Features</a>
-                <a href="/pricing" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
-                <a href="/contact-us" class="text-gray-700 hover:text-primary-600 py-2 <%= currentPath === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
-                <a href="/login" class="px-5 py-2 bg-white text-primary-600 border-2 rounded-full font-medium text-center  transition <%= currentPath === '/login' ? 'active-nav-item' : '' %>">Login</a>
+                <a href="/" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/' ? 'active-nav-item' : '' %>">Home</a>
+                <a href="/about-us" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/about-us' ? 'active-nav-item' : '' %>">About</a>
+                <a href="/service" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/service' ? 'active-nav-item' : '' %>">Services</a>
+                <a href="/features" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/features' ? 'active-nav-item' : '' %>">Features</a>
+                <a href="/pricing" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/pricing' ? 'active-nav-item' : '' %>">Pricing</a>
+                <a href="/contact-us" class="text-gray-700 hover:text-primary-600 py-2 <%= path === '/contact-us' ? 'active-nav-item' : '' %>">Contact</a>
+                <a href="/login" class="px-5 py-2 bg-white text-primary-600 border-2 rounded-full font-medium text-center  transition <%= path === '/login' ? 'active-nav-item' : '' %>">Login</a>
             </div>
         </div>
     </nav>
