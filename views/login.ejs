@@ -422,6 +422,7 @@
         const toggleSigninBtn = document.getElementById('toggleSignin','toggleSignin1');
         const signupForm = document.getElementById('signupForm');
         const signinForm = document.getElementById('signinForm');
+
         const verifyBtn = document.getElementById('verifyBtn');
         const otpVerificationArea = document.getElementById('otpVerificationArea');
         const phoneInput = document.getElementById('phoneInput');
@@ -781,22 +782,55 @@
                 otpField.value = '';
             }
         });
-
-        // Initialize mobile view
         function checkMobileView() {
-            if (window.innerWidth < 768) {
-                isSigninActive = false;
-                signupFormSection.style.transform = 'translateX(0)';
-                signinFormSection.style.transform = 'translateX(100%)';
-                updateWelcomeContent();
-            } else {
-                // Reset desktop positions
-                welcomeSection.style.transform = 'translateX(0)';
-                signupFormSection.style.transform = 'translateX(0)';
-                signinFormSection.style.transform = 'translateX(100%)';
-            }
-        }
+    const isMobile = window.innerWidth < 768;
 
-        window.addEventListener('resize', checkMobileView);
-        checkMobileView();
+    if (isMobile) {
+        // Reset positions for mobile
+        welcomeSection.style.transform = 'translateX(0)';
+        signupFormSection.style.transform = 'translateX(0)';
+        signinFormSection.style.transform = 'translateX(0)';
+
+        // Remove desktop inline transforms
+        signupFormSection.classList.remove('slide-left');
+        signinFormSection.classList.remove('slide-left');
+    } else {
+        // Desktop layout
+        if (isSigninActive) {
+            welcomeSection.style.transform = 'translateX(100%)';
+            signupFormSection.style.transform = 'translateX(100%)';
+            signinFormSection.style.transform = 'translateX(0)';
+        } else {
+            welcomeSection.style.transform = 'translateX(0)';
+            signupFormSection.style.transform = 'translateX(0)';
+            signinFormSection.style.transform = 'translateX(100%)';
+        }
+    }
+
+    // Update welcome content text for consistency
+    updateWelcomeContent();
+}
+
+// Call on load and resize
+window.addEventListener('resize', checkMobileView);
+checkMobileView();
+
+
+        // // Initialize mobile view
+        // function checkMobileView() {
+        //     if (window.innerWidth < 768) {
+        //         isSigninActive = false;
+        //         signupFormSection.style.transform = 'translateX(0)';
+        //         signinFormSection.style.transform = 'translateX(100%)';
+        //         updateWelcomeContent();
+        //     } else {
+        //         // Reset desktop positions
+        //         welcomeSection.style.transform = 'translateX(0)';
+        //         signupFormSection.style.transform = 'translateX(0)';
+        //         signinFormSection.style.transform = 'translateX(100%)';
+        //     }
+        // }
+
+        // window.addEventListener('resize', checkMobileView);
+        // checkMobileView();
     </script>
