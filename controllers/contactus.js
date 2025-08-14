@@ -9,7 +9,6 @@ const contactus= async(req,res)=>{
         res.redirect('/thankyou')
     }catch(err){
         console.log("error:",err);
-        
     }
 }
 const generateMail = async (name,email,phone,country,message,date) => {

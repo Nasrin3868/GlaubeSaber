@@ -1,0 +1,33 @@
+<div id="toast-container" class="fixed top-5 right-5 z-50 space-y-2"></div>
+
+<script>
+function showToast(message, type = 'success') {
+    const colors = {
+        success: 'bg-green-500 text-white',
+        error: 'bg-red-500 text-white',
+        info: 'bg-blue-500 text-white',
+        warning: 'bg-yellow-500 text-black'
+    };
+
+    const toast = document.createElement('div');
+    toast.className = `px-4 py-3 rounded shadow ${colors[type]} animate-slideIn`;
+    toast.innerText = message;
+
+    document.getElementById('toast-container').appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('opacity-0');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+</script>
+
+<style>
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+</style>

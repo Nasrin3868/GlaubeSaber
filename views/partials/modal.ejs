@@ -1,0 +1,105 @@
+<!-- Modal Structure -->
+<div id="modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg shadow-lg max-w-md w-full relative"> <!-- Added relative for positioning -->
+    <!-- Close button (top-right corner) -->
+    <button id="close-modal-top" class="absolute top-2 right-2 p-1 text-gray-500 hover:text-gray-700">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    
+    <div class="p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <!-- Only showing cross icon (removed other icons) -->
+        <svg id="modal-icon" class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        <h3 id="modal-title" class="text-xl font-semibold"><%= modalTitle || 'Notification' %></h3>
+      </div>
+      <p id="modal-message" class="text-gray-700 mb-6"><%= modalMessage || '' %></p>
+    </div>
+    
+    <!-- Progress/thock line -->
+    <div id="progress-bar" class="h-1 bg-blue-500 w-0"></div>
+  </div>
+</div>
+
+<!-- Modal Script -->
+<script>
+  const modal = document.getElementById('modal');
+  const closeModalBtn = document.getElementById('close-modal-top');
+  const progressBar = document.getElementById('progress-bar');
+  let progressInterval;
+
+  // Close modal functions
+  function closeModal() {
+    modal.classList.add('hidden');
+    clearInterval(progressInterval);
+  }
+
+  // Close modal on button click
+  closeModalBtn.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Auto-show modal if server sends a message
+  if (typeof showModal !== 'undefined' && showModal) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalType = '<%= modalType %>';
+      const modalTitle = '<%= modalTitle %>';
+      const modalMessage = '<%= modalMessage %>';
+
+      if (modalType && modalTitle && modalMessage) {
+        showModal(modalType, modalTitle, modalMessage);
+      }
+    });
+  }
+
+  // Reusable function to show modal
+  function showModal(type, title, message) {
+    // Update text
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-message').textContent = message;
+    
+    // Set icon color based on type
+    const icon = document.getElementById('modal-icon');
+    icon.classList.remove('text-gray-500', 'text-red-500', 'text-green-500', 'text-yellow-500');
+    
+    switch(type) {
+      case 'error':
+        icon.classList.add('text-red-500');
+        break;
+      case 'success':
+        icon.classList.add('text-green-500');
+        break;
+      case 'warning':
+        icon.classList.add('text-yellow-500');
+        break;
+      default:
+        icon.classList.add('text-gray-500');
+    }
+
+    // Display modal
+    modal.classList.remove('hidden');
+    
+    // Start progress bar animation
+    let width = 0;
+    progressBar.style.width = '0';
+    clearInterval(progressInterval);
+    
+    progressInterval = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(progressInterval);
+        closeModal();
+      } else {
+        width += 1;
+        progressBar.style.width = width + '%';
+      }
+    }, 30); // Adjust timing (30ms = ~3s total)
+  }
+</script>
